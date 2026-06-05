@@ -285,7 +285,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyV7oERfcQHGJUlceFYtj31zelf02B0v8IK_Y3rlzevaC1jJiZ7ethBh5oJTSh6YR_t/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxagW-nqaGJ-AKNfFTafiIp15eEdPCFykQIOnIympgMIaSfQ50xXwr0mj2CBM_2ZCll/exec";
 
 const answers = {};
 let currentStep = 0;
@@ -460,7 +460,7 @@ function sendData() {
   setTimeout(() => {
     let done = false;
     const finish = () => { if (!done) { done = true; showSuccess(); } };
-    if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbyV7oERfcQHGJUlceFYtj31zelf02B0v8IK_Y3rlzevaC1jJiZ7ethBh5oJTSh6YR_t/exec") { finish(); return; }
+    if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbxagW-nqaGJ-AKNfFTafiIp15eEdPCFykQIOnIympgMIaSfQ50xXwr0mj2CBM_2ZCll/exec") { finish(); return; }
     const params = new URLSearchParams(answers).toString();
     const img = new Image();
     img.src = SCRIPT_URL + "?" + params;
