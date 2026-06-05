@@ -461,8 +461,13 @@ function sendData() {
     let done = false;
     const finish = () => { if (!done) { done = true; showSuccess(); } };
     const params = new URLSearchParams(answers).toString();
-    fetch(SCRIPT_URL + "?" + params, { mode: "no-cors", redirect: "follow" })
-      .then(finish).catch(finish);
+    const url = SCRIPT_URL + "?" + params;
+    // Tenta XMLHttpRequest primeiro (preserva params no redirect)
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onload = finish;
+    xhr.onerror = finish;
+    xhr.send();
     setTimeout(finish, 5000);
   }, 1200);
 }
