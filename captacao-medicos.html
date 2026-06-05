@@ -460,13 +460,10 @@ function sendData() {
   setTimeout(() => {
     let done = false;
     const finish = () => { if (!done) { done = true; showSuccess(); } };
-    if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbxagW-nqaGJ-AKNfFTafiIp15eEdPCFykQIOnIympgMIaSfQ50xXwr0mj2CBM_2ZCll/exec") { finish(); return; }
     const params = new URLSearchParams(answers).toString();
-    const img = new Image();
-    img.src = SCRIPT_URL + "?" + params;
-    img.onload = finish;
-    img.onerror = finish;
-    setTimeout(finish, 3000);
+    fetch(SCRIPT_URL + "?" + params, { mode: "no-cors", redirect: "follow" })
+      .then(finish).catch(finish);
+    setTimeout(finish, 5000);
   }, 1200);
 }
 
