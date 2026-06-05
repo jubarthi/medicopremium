@@ -392,7 +392,10 @@ function addUserBubble(text) {
 
 function scrollChat() {
   chat.scrollTop = chat.scrollHeight;
-  window.scrollTo(0, document.body.scrollHeight);
+  setTimeout(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    document.getElementById("inputArea").scrollIntoView({ behavior: "smooth", block: "end" });
+  }, 50);
 }
 
 function escHtml(t) {
@@ -437,6 +440,7 @@ function renderInput(step) {
       wrap.appendChild(btn);
     });
     inputArea.appendChild(wrap);
+    setTimeout(() => scrollChat(), 100);
   }
 }
 
