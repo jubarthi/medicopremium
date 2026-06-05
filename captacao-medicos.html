@@ -305,9 +305,13 @@ const STEPS = [
   },
   {
     key: "especialidade",
-    msg: "Qual é a sua <strong>especialidade médica</strong>?<br><span style='font-size:13px;color:#888'>Se ainda estiver cursando, informe a área.</span>",
+    msg: (a) => a.formado === "Sim, já sou formado(a)"
+      ? "Qual é a sua <strong>especialidade médica</strong>?"
+      : "Qual <strong>área de residência</strong> pretende fazer?",
     type: "text",
-    placeholder: "Ex: Cardiologista, Dermatologista, Clínico Geral..."
+    placeholder: (a) => a.formado === "Sim, já sou formado(a)"
+      ? "Ex: Cardiologista, Dermatologista, Clínico Geral..."
+      : "Ex: Cardiologia, Dermatologia, Pediatria..."
   },
   {
     key: "whatsapp",
@@ -406,7 +410,7 @@ function renderInput(step) {
     wrap.className = "text-wrap";
     const inp = document.createElement("input");
     inp.className = "text-input";
-    inp.placeholder = s.placeholder || "";
+    inp.placeholder = (typeof s.placeholder === "function" ? s.placeholder(answers) : s.placeholder) || "";
     const btn = document.createElement("button");
     btn.className = "send-btn";
     btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>`;
